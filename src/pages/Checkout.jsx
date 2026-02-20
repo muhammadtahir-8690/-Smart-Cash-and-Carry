@@ -20,7 +20,13 @@ const Checkout = () => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        setCart(getCart());
+        const savedCart = getCart();
+        setCart(savedCart);
+        // If cart is empty, redirect back to shop immediately
+        if (!savedCart || savedCart.length === 0) {
+            alert('Your cart is empty. Please add items before checking out.');
+            navigate('/home');
+        }
     }, []);
 
     const deliveryFee = 0;
@@ -73,6 +79,12 @@ const Checkout = () => {
     };
 
     const handlePaymentSuccess = () => {
+        // Guard: never allow a zero-value or empty-cart order
+        if (!cart || cart.length === 0 || orderAmount <= 0) {
+            alert('Your cart is empty. Please add items before placing an order.');
+            navigate('/home');
+            return;
+        }
         const orderId = 'SC-' + Math.floor(Math.random() * 10000).toString().padStart(4, '0');
         const currentCart = [...cart];
         clearCart();
@@ -203,7 +215,7 @@ const Checkout = () => {
                                     <p className="text-sm text-slate-500">Narowal City, Punjab 51600</p>
                                     <div className="flex items-center gap-2 mt-4 text-xs font-bold text-slate-700 dark:text-slate-300">
                                         <span className="material-symbols-outlined text-sm">phone</span>
-                                        +92 300 1234567
+                                        0300 3305553
                                     </div>
                                 </div>
                             </div>
@@ -384,10 +396,11 @@ const Checkout = () => {
                                     <div className="p-8">
                                         <button
                                             onClick={handlePaymentSuccess}
-                                            className="w-full py-5 bg-[#c52026] hover:bg-red-700 text-white font-black text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                                            disabled={cart.length === 0 || orderAmount <= 0}
+                                            className="w-full py-5 bg-[#c52026] hover:bg-red-700 text-white font-black text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
                                         >
                                             <span className="material-symbols-outlined text-2xl">shopping_bag</span>
-                                            Place Order Now
+                                            {cart.length === 0 ? 'Cart is Empty' : 'Place Order Now'}
                                         </button>
                                     </div>
                                 )}

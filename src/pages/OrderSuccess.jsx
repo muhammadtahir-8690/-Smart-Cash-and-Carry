@@ -6,14 +6,22 @@ const OrderSuccess = () => {
     const location = useLocation();
     const { orderId, cart, subtotal, total } = location.state || {};
 
-    // Fallback if accessed directly without state
+    // Redirect if accessed directly, or if order has zero value (invalid order)
     useEffect(() => {
-        if (!location.state) {
-            navigate('/');
-        }
-    }, [location, navigate]);
+        const isInvalidOrder =
+            !location.state ||
+            !cart ||
+            cart.length === 0 ||
+            !total ||
+            total <= 0;
 
-    if (!location.state) return null;
+        if (isInvalidOrder) {
+            navigate('/home', { replace: true });
+        }
+    }, [location.state, cart, total, navigate]);
+
+    // Don't render anything for invalid orders
+    if (!location.state || !cart || cart.length === 0 || !total || total <= 0) return null;
 
     return (
         <div className="font-sans bg-[#f8fafc] dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
@@ -132,7 +140,7 @@ const OrderSuccess = () => {
                     <div className="h-8 w-px bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
                     <div className="flex items-center gap-2 font-bold text-slate-600 dark:text-slate-300">
                         <span className="material-symbols-outlined">call</span>
-                        +92 300 1234567
+                        0300 3305553
                     </div>
                     <div className="flex items-center gap-2 font-bold text-slate-600 dark:text-slate-300">
                         <span className="material-symbols-outlined">mail</span>
