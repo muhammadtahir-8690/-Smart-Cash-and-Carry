@@ -16,7 +16,6 @@ const Checkout = () => {
     const [clientSecret, setClientSecret] = useState("");
     const [isProcessingSadaPay, setIsProcessingSadaPay] = useState(false);
     const [sadaPayPhone, setSadaPayPhone] = useState("");
-    const [showSuccess, setShowSuccess] = useState(false);
 
     const [cart, setCart] = useState([]);
 
@@ -32,15 +31,6 @@ const Checkout = () => {
     const orderAmount = subtotal + deliveryFee;
 
     useEffect(() => {
-        if (showSuccess) {
-            const timer = setTimeout(() => {
-                navigate('/home');
-            }, 3000);
-            return () => clearTimeout(timer);
-        }
-    }, [showSuccess, navigate]);
-
-    useEffect(() => {
         if (paymentMethod === 'online' && onlineSubMethod === 'card' && !clientSecret) {
             // Create PaymentIntent as soon as cards are selected
             fetch("/api/create-payment-intent", {
@@ -51,7 +41,7 @@ const Checkout = () => {
                 .then((res) => res.json())
                 .then((data) => setClientSecret(data.clientSecret));
         }
-    }, [paymentMethod, onlineSubMethod, clientSecret]);
+    }, [paymentMethod, onlineSubMethod, clientSecret, orderAmount]);
 
     const handleSadaPaySubmit = async (e) => {
         e.preventDefault();
@@ -83,8 +73,17 @@ const Checkout = () => {
     };
 
     const handlePaymentSuccess = () => {
+        const orderId = 'SC-' + Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+        const currentCart = [...cart];
         clearCart();
-        setShowSuccess(true);
+        navigate('/order-success', {
+            state: {
+                orderId,
+                cart: currentCart,
+                subtotal,
+                total: orderAmount
+            }
+        });
     };
 
     const appearance = {
@@ -398,40 +397,6 @@ const Checkout = () => {
                 </div>
             </main>
 
-            {/* Success Animation Overlay */}
-            {showSuccess && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0f172a]/95 backdrop-blur-xl animate-in fade-in duration-500">
-                    <div className="max-w-md w-full mx-6 text-center space-y-8 animate-in zoom-in-95 duration-500 delay-100">
-                        <div className="relative mx-auto w-32 h-32 flex items-center justify-center">
-                            <div className="absolute inset-0 bg-emerald-500/20 rounded-full animate-ping"></div>
-                            <div className="relative w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40">
-                                <span className="material-symbols-outlined text-white text-5xl font-black">check</span>
-                            </div>
-                        </div>
-                        <div className="space-y-3">
-                            <h2 className="text-4xl font-black text-white tracking-tight">Order Confirmed!</h2>
-                            <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Thank you for shopping with Smart Cash & Carry</p>
-                        </div>
-                        <div className="pt-8">
-                            <div className="w-12 h-1 bg-emerald-500/20 rounded-full mx-auto overflow-hidden">
-                                <div className="w-full h-full bg-emerald-500 animate-progress origin-left"></div>
-                            </div>
-                            <p className="mt-4 text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Redirecting to Home</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                @keyframes progress {
-                    0% { transform: scaleX(0); }
-                    100% { transform: scaleX(1); }
-                }
-                .animate-progress {
-                    animation: progress 3s linear forwards;
-                }
-            ` }} />
         </div>
     );
 };

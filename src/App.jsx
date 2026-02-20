@@ -3,6 +3,7 @@ import Onboarding from './pages/Onboarding';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import OrderSuccess from './pages/OrderSuccess';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/order-success" element={<OrderSuccess />} />
             </Routes>
         </Router>
     );
