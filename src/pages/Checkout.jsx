@@ -23,7 +23,7 @@ const Checkout = () => {
         setCart(getCart());
     }, []);
 
-    const deliveryFee = 150;
+    const deliveryFee = 0;
     const subtotal = useMemo(() => {
         return cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     }, [cart]);
@@ -364,10 +364,6 @@ const Checkout = () => {
                                     <div className="flex justify-between text-sm font-semibold text-slate-500">
                                         <span>Subtotal</span>
                                         <span className="text-slate-900 dark:text-white">PKR {subtotal.toLocaleString()}</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm font-semibold text-slate-500">
-                                        <span>Delivery (Express)</span>
-                                        <span className="text-slate-900 dark:text-white">PKR {deliveryFee}</span>
                                     </div>
                                     <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-end">
                                         <div>
