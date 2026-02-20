@@ -1,16 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from '../components/PaymentForm';
+import { getCart, clearCart } from '../utils/cartUtils';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState, useMemo } from 'react';
-import { getCart, clearCart } from '../utils/cartUtils';
 
 const Checkout = () => {
     const navigate = useNavigate();

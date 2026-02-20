@@ -20,12 +20,23 @@ export const saveCart = (cart) => {
 
 export const addToCart = (product) => {
     const cart = getCart();
-    const existingIndex = cart.findIndex(item => item.id === product.id);
+    // Ensure ID is a string for consistent comparison
+    const productId = String(product.id);
+    const existingIndex = cart.findIndex(item => String(item.id) === productId);
+
+    // Safety check: Ensure product has a price
+    const safeProduct = {
+        ...product,
+        price: Number(product.price) || 0,
+        id: productId
+    };
 
     if (existingIndex > -1) {
         cart[existingIndex].quantity += 1;
+        // Update price in case it was missing or stale in localStorage
+        cart[existingIndex].price = safeProduct.price;
     } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push({ ...safeProduct, quantity: 1 });
     }
 
     saveCart(cart);
