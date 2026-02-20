@@ -1,7 +1,84 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import PaymentForm from '../components/PaymentForm';
+
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Checkout = () => {
     const navigate = useNavigate();
+    const [paymentMethod, setPaymentMethod] = useState('cod');
+    const [onlineSubMethod, setOnlineSubMethod] = useState('card');
+    const [clientSecret, setClientSecret] = useState("");
+    const [isProcessingSadaPay, setIsProcessingSadaPay] = useState(false);
+    const [sadaPayPhone, setSadaPayPhone] = useState("");
+
+    const orderAmount = 1170; // Hardcoded for this demo, should be dynamic in real app
+
+    useEffect(() => {
+        if (paymentMethod === 'online' && onlineSubMethod === 'card' && !clientSecret) {
+            // Create PaymentIntent as soon as cards are selected
+            fetch("/api/create-payment-intent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount: orderAmount * 100 }), // Stripe expects amounts in cents
+            })
+                .then((res) => res.json())
+                .then((data) => setClientSecret(data.clientSecret));
+        }
+    }, [paymentMethod, onlineSubMethod, clientSecret]);
+
+    const handleSadaPaySubmit = async (e) => {
+        e.preventDefault();
+        setIsProcessingSadaPay(true);
+
+        try {
+            const response = await fetch("/api/sadapay-handler", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    mobileNumber: sadaPayPhone,
+                    amount: orderAmount,
+                    transactionId: `TXN-${Date.now()}`
+                }),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                alert(data.message);
+                handlePaymentSuccess();
+            } else {
+                alert(data.error || "SadaPay payment failed.");
+            }
+        } catch (error) {
+            alert("An error occurred with SadaPay integration.");
+        } finally {
+            setIsProcessingSadaPay(false);
+        }
+    };
+
+    const handlePaymentSuccess = () => {
+        // Redirect to a success page or show success message
+        alert("Payment Successful! Thank you for your order.");
+        navigate('/home');
+    };
+
+    const appearance = {
+        theme: 'stripe',
+        variables: {
+            colorPrimary: '#c52026',
+            colorBackground: '#ffffff',
+            colorText: '#0f172a',
+            borderRadius: '16px',
+        },
+    };
+    const options = {
+        clientSecret,
+        appearance,
+    };
 
     return (
         <div className="bg-[#fdfdfe] dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-['Plus_Jakarta_Sans',sans-serif]">
@@ -123,8 +200,15 @@ const Checkout = () => {
                                 </div>
                             </div>
                             <div className="space-y-4">
-                                <label className="flex items-center p-6 rounded-[24px] border-2 border-[#211e69] bg-[#211e69]/5 cursor-pointer">
-                                    <input type="radio" name="payment" defaultChecked className="w-5 h-5 text-[#211e69] focus:ring-[#211e69]" />
+                                {/* Cash on Delivery */}
+                                <label className={`flex items-center p-6 rounded-[24px] border-2 transition-all cursor-pointer ${paymentMethod === 'cod' ? 'border-[#211e69] bg-[#211e69]/5 shadow-sm' : 'border-slate-100 dark:border-slate-800'}`}>
+                                    <input
+                                        type="radio"
+                                        name="payment"
+                                        checked={paymentMethod === 'cod'}
+                                        onChange={() => setPaymentMethod('cod')}
+                                        className="w-5 h-5 text-[#211e69] focus:ring-[#211e69]"
+                                    />
                                     <div className="ml-6 flex items-center gap-4">
                                         <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center border border-slate-200">
                                             <span className="material-symbols-outlined text-slate-600 dark:text-slate-300">payments</span>
@@ -135,6 +219,107 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                 </label>
+
+                                {/* Pay Online Group */}
+                                <div className={`rounded-[32px] border-2 transition-all overflow-hidden ${paymentMethod === 'online' ? 'border-[#211e69] bg-[#211e69]/5 shadow-md' : 'border-slate-100 dark:border-slate-800'}`}>
+                                    <label className="flex items-center p-6 cursor-pointer" onClick={() => setPaymentMethod('online')}>
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            checked={paymentMethod === 'online'}
+                                            onChange={() => setPaymentMethod('online')}
+                                            className="w-5 h-5 text-[#211e69] focus:ring-[#211e69]"
+                                        />
+                                        <div className="ml-6 flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center border border-slate-200">
+                                                <span className="material-symbols-outlined text-slate-600 dark:text-slate-300">language</span>
+                                            </div>
+                                            <div>
+                                                <span className="font-bold text-base block">Pay Online</span>
+                                                <span className="text-xs text-slate-500 font-medium">Secure digital payment methods</span>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    {paymentMethod === 'online' && (
+                                        <div className="px-6 pb-6 space-y-4">
+                                            <div className="flex gap-3 p-1 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
+                                                <button
+                                                    onClick={() => setOnlineSubMethod('card')}
+                                                    className={`flex-1 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${onlineSubMethod === 'card' ? 'bg-[#211e69] text-white shadow-lg' : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700'}`}
+                                                >
+                                                    <span className="material-symbols-outlined text-sm">credit_card</span>
+                                                    Card
+                                                </button>
+                                                <button
+                                                    onClick={() => setOnlineSubMethod('sadapay')}
+                                                    className={`flex-1 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${onlineSubMethod === 'sadapay' ? 'bg-[#00d084] text-white shadow-lg' : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700'}`}
+                                                >
+                                                    <span className="material-symbols-outlined text-sm">account_balance_wallet</span>
+                                                    SadaPay
+                                                </button>
+                                            </div>
+
+                                            {/* Stripe Card Element */}
+                                            {onlineSubMethod === 'card' && (
+                                                <div className="mt-4 p-6 bg-white dark:bg-slate-900 rounded-[24px] border border-slate-100 dark:border-slate-800">
+                                                    {clientSecret ? (
+                                                        <Elements options={options} stripe={stripePromise}>
+                                                            <PaymentForm amount={orderAmount} onPaymentSuccess={handlePaymentSuccess} />
+                                                        </Elements>
+                                                    ) : (
+                                                        <div className="flex flex-col items-center py-6 gap-3">
+                                                            <div className="w-8 h-8 border-2 border-[#211e69] border-t-transparent rounded-full animate-spin"></div>
+                                                            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Securing Payment Channel...</p>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            {/* SadaPay form */}
+                                            {onlineSubMethod === 'sadapay' && (
+                                                <div className="mt-4 p-6 bg-white dark:bg-slate-900 rounded-[24px] border border-slate-100 dark:border-slate-800 space-y-6">
+                                                    <div className="flex items-center gap-4 p-4 bg-[#00d084]/5 rounded-2xl border border-[#00d084]/20">
+                                                        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                                                            <img src="https://sadapay.pk/wp-content/uploads/2022/06/SadaPay-Logo.png" className="w-8" alt="SadaPay" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-sm font-bold text-slate-800 dark:text-white">Pay with SadaPay Wallet</p>
+                                                            <p className="text-[10px] text-slate-500">Fast & seamless mobile payments</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <form onSubmit={handleSadaPaySubmit} className="space-y-4">
+                                                        <div className="space-y-2">
+                                                            <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">SadaPay Registered Mobile</label>
+                                                            <div className="relative">
+                                                                <span className="absolute left-5 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">+92</span>
+                                                                <input
+                                                                    required
+                                                                    className="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl pl-14 pr-5 py-4 text-sm font-semibold focus:ring-[#00d084] focus:border-[#00d084]"
+                                                                    type="tel"
+                                                                    placeholder="300 0000000"
+                                                                    value={sadaPayPhone}
+                                                                    onChange={(e) => setSadaPayPhone(e.target.value)}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <button
+                                                            disabled={isProcessingSadaPay}
+                                                            className="w-full py-5 bg-[#00d084] hover:bg-[#00b070] text-white font-black text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50"
+                                                        >
+                                                            <span className="material-symbols-outlined text-2xl">
+                                                                {isProcessingSadaPay ? "cached" : "bolt"}
+                                                            </span>
+                                                            {isProcessingSadaPay ? "Sending Request..." : `Pay PKR ${orderAmount.toLocaleString()}`}
+                                                        </button>
+                                                    </form>
+                                                    <p className="text-center text-[9px] text-slate-400 font-bold uppercase tracking-[0.2em]">You will receive a notification in your app</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -172,12 +357,17 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-8">
-                                    <button className="w-full py-5 bg-[#c52026] hover:bg-red-700 text-white font-black text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
-                                        <span className="material-symbols-outlined text-2xl">shopping_bag</span>
-                                        Place Order Now
-                                    </button>
-                                </div>
+                                {paymentMethod === 'cod' && (
+                                    <div className="p-8">
+                                        <button
+                                            onClick={handlePaymentSuccess}
+                                            className="w-full py-5 bg-[#c52026] hover:bg-red-700 text-white font-black text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                                        >
+                                            <span className="material-symbols-outlined text-2xl">shopping_bag</span>
+                                            Place Order Now
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
