@@ -140,6 +140,44 @@ const OrderSuccess = () => {
                     </div>
                 </div>
             </div>
+
+            <footer className="mt-20 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-16">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid md:grid-cols-4 gap-12 pb-16 border-b border-slate-50 dark:border-slate-800">
+                        <div className="col-span-2">
+                            <div className="flex items-center gap-3 mb-6">
+                                <span className="font-black text-2xl tracking-tighter uppercase italic">
+                                    <span className="text-[#1e1e7a] dark:text-white">Smart</span>
+                                    <span className="text-[#c51c24]">Cash & Carry</span>
+                                </span>
+                            </div>
+                            <p className="text-slate-500 dark:text-slate-400 max-w-sm text-sm font-medium leading-relaxed">
+                                Premium grocery shopping experience in Narowal. Providing quality products and exceptional service directly to your doorstep.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 className="font-black text-[11px] uppercase tracking-[0.2em] text-slate-400 mb-6">Quick Links</h5>
+                            <ul className="space-y-4 text-sm font-bold text-slate-600 dark:text-slate-400">
+                                <li><a className="hover:text-[#c51c24] transition-colors" href="#">Track Order</a></li>
+                                <li><a className="hover:text-[#c51c24] transition-colors" href="#">Shipping Policy</a></li>
+                                <li><a className="hover:text-[#c51c24] transition-colors" href="#">Return Policy</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 className="font-black text-[11px] uppercase tracking-[0.2em] text-slate-400 mb-6">Narowal Store</h5>
+                            <p className="text-sm font-bold text-slate-600 dark:text-slate-400">Main Circular Road,<br />Near DHQ Hospital, Narowal</p>
+                        </div>
+                    </div>
+                    <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">© 2024 Smart Cash & Carry Narowal. All Rights Reserved.</p>
+                        <div className="flex items-center gap-8 text-slate-300">
+                            <span className="material-symbols-outlined text-3xl">verified</span>
+                            <span className="material-symbols-outlined text-3xl">lock</span>
+                            <span className="material-symbols-outlined text-3xl">workspace_premium</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 };
