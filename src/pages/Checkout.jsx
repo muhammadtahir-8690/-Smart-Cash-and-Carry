@@ -1,59 +1,189 @@
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingCart, Verified, ShieldCheck, MapPin, CreditCard, PackageCheck } from 'lucide-react';
 
 const Checkout = () => {
     const navigate = useNavigate();
 
     return (
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="min-h-screen bg-slate-50 dark:bg-slate-900">
-            <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 px-6 py-4">
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
-                    <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/home')}>
-                        <div className="bg-secondary p-2 rounded-xl"><ShoppingCart className="w-6 h-6 text-white" /></div>
-                        <span className="font-display font-black text-2xl tracking-tighter text-secondary dark:text-white uppercase">Smart</span>
+        <div className="bg-[#fdfdfe] dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-['Plus_Jakarta_Sans',sans-serif]">
+            <nav className="sticky top-0 z-50 bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <div className="flex items-center gap-4 cursor-pointer" onClick={() => navigate('/home')}>
+                        <div className="relative">
+                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md border border-slate-100 overflow-hidden">
+                                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#211e69] to-[#c52026]">
+                                    <span className="material-symbols-outlined text-white text-2xl">shopping_cart</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-col leading-none text-left">
+                            <span className="font-extrabold text-2xl tracking-tighter text-slate-900 dark:text-white uppercase">
+                                <span className="text-[#211e69]">Smart</span>
+                                <span className="text-[#c52026]">Cash & Carry</span>
+                            </span>
+                            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-slate-400">Premium Grocery Experience</span>
+                        </div>
                     </div>
-                    <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-100">
-                        <ShieldCheck className="w-4 h-4 text-green-500" /><span className="text-[10px] font-black uppercase text-green-600 tracking-widest">Secure Checkout</span>
+                    <div className="flex items-center gap-6">
+                        <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800/50 rounded-full border border-slate-100 dark:border-slate-700">
+                            <span className="material-symbols-outlined text-emerald-500 text-lg">verified_user</span>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Secure 256-bit SSL</span>
+                        </div>
                     </div>
                 </div>
             </nav>
 
-            <main className="max-w-7xl mx-auto px-6 py-12">
-                <div className="grid lg:grid-cols-12 gap-12">
+            <main className="max-w-7xl mx-auto px-6 py-10">
+                <div className="max-w-3xl mx-auto mb-12">
+                    <div className="relative flex justify-between items-center px-4">
+                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 dark:bg-slate-800 -z-10 -translate-y-1/2"></div>
+                        <div className="absolute top-1/2 left-0 w-1/2 h-0.5 bg-[#211e69] -z-10 -translate-y-1/2"></div>
+                        <div className="flex flex-col items-center gap-3 bg-[#fdfdfe] dark:bg-[#0f172a] px-4">
+                            <div className="w-10 h-10 rounded-full border-2 border-[#211e69] bg-[#211e69] text-white flex items-center justify-center font-bold text-sm shadow-lg shadow-primary/20">
+                                <span className="material-symbols-outlined text-sm">check</span>
+                            </div>
+                            <span className="text-[11px] font-black uppercase tracking-widest text-[#211e69]">Shipping</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-3 bg-[#fdfdfe] dark:bg-[#0f172a] px-4">
+                            <div className="w-10 h-10 rounded-full border-2 border-[#211e69] bg-white dark:bg-slate-900 text-[#211e69] flex items-center justify-center font-bold text-sm shadow-lg">2</div>
+                            <span className="text-[11px] font-black uppercase tracking-widest text-[#211e69]">Payment</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-3 bg-[#fdfdfe] dark:bg-[#0f172a] px-4">
+                            <div className="w-10 h-10 rounded-full border-2 border-slate-200 text-slate-300 bg-white dark:bg-slate-900 font-bold text-sm">3</div>
+                            <span className="text-[11px] font-black uppercase tracking-widest text-slate-300">Review</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid lg:grid-cols-12 gap-12 text-left">
                     <div className="lg:col-span-8 space-y-8">
-                        <h1 className="text-4xl font-black text-secondary dark:text-white mb-10">Checkout Details</h1>
-                        <section className="bg-white dark:bg-slate-800 p-10 rounded-4xl shadow-premium border border-slate-50 dark:border-slate-700">
-                            <div className="flex items-center gap-4 mb-10"><div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center"><MapPin className="text-primary w-6 h-6" /></div><h2 className="text-2xl font-bold">Delivery Address</h2></div>
-                            <div className="p-8 rounded-3xl border-2 border-secondary bg-secondary/5 relative">
-                                <Verified className="absolute top-6 right-6 text-secondary" /><p className="font-bold text-xl mb-1">Ahmed Khan</p><p className="text-slate-500">Circular Road, Near DHQ Hospital, Narowal</p><p className="text-xs font-bold text-slate-400 mt-4">+92 300 1234567</p>
+                        <header>
+                            <div className="flex items-center gap-2 text-[#c52026] font-bold text-xs uppercase tracking-[0.2em] mb-3">
+                                <span className="material-symbols-outlined text-sm">shield_lock</span>
+                                Safe & Encrypted Transaction
+                            </div>
+                            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Checkout Details</h1>
+                        </header>
+
+                        <section className="bg-white dark:bg-slate-900/50 p-8 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-sm">
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="w-12 h-12 bg-[#211e69]/5 rounded-2xl flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[#211e69] text-2xl">person</span>
+                                </div>
+                                <div>
+                                    <h2 className="text-xl font-bold">Contact Information</h2>
+                                    <p className="text-sm text-slate-500">How we should contact you about your order</p>
+                                </div>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
+                                    <input className="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-4 text-sm font-semibold focus:ring-[#211e69] focus:border-[#211e69]" type="text" defaultValue="Ahmed Khan" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
+                                    <input className="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-4 text-sm font-semibold focus:ring-[#211e69] focus:border-[#211e69]" type="email" defaultValue="ahmed.khan@email.com" />
+                                </div>
                             </div>
                         </section>
-                        <section className="bg-white dark:bg-slate-800 p-10 rounded-4xl shadow-premium border border-slate-50 dark:border-slate-700">
-                            <div className="flex items-center gap-4 mb-10"><div className="w-12 h-12 bg-secondary/10 rounded-2xl flex items-center justify-center"><CreditCard className="text-secondary w-6 h-6" /></div><h2 className="text-2xl font-bold">Payment Method</h2></div>
+
+                        <section className="bg-white dark:bg-slate-900/50 p-8 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-sm">
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-[#211e69]/5 rounded-2xl flex items-center justify-center">
+                                        <span className="material-symbols-outlined text-[#211e69] text-2xl">location_on</span>
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl font-bold">Delivery Location</h2>
+                                        <p className="text-sm text-slate-500">Narowal delivery zone #4</p>
+                                    </div>
+                                </div>
+                                <button className="px-4 py-2 text-xs font-black uppercase tracking-widest text-[#211e69] bg-[#211e69]/5 rounded-xl hover:bg-[#211e69]/10 transition-colors">Edit</button>
+                            </div>
+                            <div className="p-6 rounded-[24px] border-2 border-[#211e69] bg-[#211e69]/5 relative">
+                                <span className="material-symbols-outlined absolute top-6 right-6 text-[#211e69]">verified</span>
+                                <div className="flex flex-col gap-1">
+                                    <p className="font-bold text-lg">Circular Road, Near DHQ Hospital</p>
+                                    <p className="text-sm text-slate-500">Narowal City, Punjab 51600</p>
+                                    <div className="flex items-center gap-2 mt-4 text-xs font-bold text-slate-700 dark:text-slate-300">
+                                        <span className="material-symbols-outlined text-sm">phone</span>
+                                        +92 300 1234567
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section className="bg-white dark:bg-slate-900/50 p-8 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-sm">
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="w-12 h-12 bg-[#211e69]/5 rounded-2xl flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[#211e69] text-2xl">account_balance_wallet</span>
+                                </div>
+                                <div>
+                                    <h2 className="text-xl font-bold">Payment Method</h2>
+                                    <p className="text-sm text-slate-500">Safe & Encrypted Transactions</p>
+                                </div>
+                            </div>
                             <div className="space-y-4">
-                                {['Cash on Delivery', 'Mobile Wallet'].map((method, i) => (
-                                    <label key={method} className="flex items-center p-6 rounded-3xl border-2 border-slate-50 dark:border-slate-700 cursor-pointer hover:border-secondary transition-all">
-                                        <input type="radio" name="payment" defaultChecked={i === 0} className="w-5 h-5 text-secondary focus:ring-secondary" /><span className="ml-4 font-bold text-lg">{method}</span>
-                                    </label>
-                                ))}
+                                <label className="flex items-center p-6 rounded-[24px] border-2 border-[#211e69] bg-[#211e69]/5 cursor-pointer">
+                                    <input type="radio" name="payment" defaultChecked className="w-5 h-5 text-[#211e69] focus:ring-[#211e69]" />
+                                    <div className="ml-6 flex items-center gap-4">
+                                        <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center border border-slate-200">
+                                            <span className="material-symbols-outlined text-slate-600 dark:text-slate-300">payments</span>
+                                        </div>
+                                        <div>
+                                            <span className="font-bold text-base block">Cash on Delivery</span>
+                                            <span className="text-xs text-slate-500 font-medium">Pay exactly when your items arrive</span>
+                                        </div>
+                                    </div>
+                                </label>
                             </div>
                         </section>
                     </div>
+
                     <div className="lg:col-span-4">
-                        <div className="sticky top-28 bg-white dark:bg-slate-800 p-10 rounded-4xl shadow-premium border border-slate-50 dark:border-slate-700">
-                            <h3 className="text-2xl font-bold mb-8">Order Summary</h3>
-                            <div className="space-y-6 mb-10 pb-8 border-b border-slate-50 dark:border-slate-700">
-                                <div className="flex justify-between font-bold"><span className="text-slate-500">Subtotal</span><span>PKR 1,020</span></div>
-                                <div className="flex justify-between font-bold"><span className="text-slate-500">Delivery</span><span className="text-green-500">FREE</span></div>
+                        <div className="sticky top-28 space-y-6">
+                            <div className="bg-white dark:bg-slate-900 rounded-[32px] shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden">
+                                <div className="p-8 border-b border-slate-50 dark:border-slate-800">
+                                    <h3 className="text-xl font-extrabold mb-1">Order Summary</h3>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Order ID: #SC-9921</p>
+                                </div>
+                                <div className="p-8 space-y-6 max-h-[300px] overflow-y-auto custom-scrollbar">
+                                    <div className="flex gap-4">
+                                        <img className="w-16 h-16 rounded-2xl bg-slate-50 p-2 object-contain border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwZXb6cwO28GABSUp8GlHD7Luc84SPqGVuotlo4aCbjM-Ck8IqJJNnQSPPLL4kNqZ8xdTMv3l1O55PKH0BdpWuzpphkNxprKxQb2POFEgLZuEpO-7YXCwYcyVkVH9SydFbsNzMtllK4u4AhWV6F_3ERa_t6tDxhbSmqILQplpons9djFUYXiqBIa-S1_fWfdFdNnTlqOGlNEyasDbA5RIq_zxKq-bZ-1KLGZV6GGvlHcO35-QpegDuB_r5MoT-pyg0aujA-Nn4Wz5v" alt="Tomatoes" />
+                                        <div className="flex-1">
+                                            <p className="text-sm font-bold truncate">Fresh Tomatoes (Premium)</p>
+                                            <p className="text-xs text-slate-400 font-semibold">1kg × 2</p>
+                                            <p className="text-sm font-black mt-1">PKR 440</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-8 bg-slate-50/50 dark:bg-slate-800/30 space-y-3">
+                                    <div className="flex justify-between text-sm font-semibold text-slate-500">
+                                        <span>Subtotal</span>
+                                        <span className="text-slate-900 dark:text-white">PKR 1,020</span>
+                                    </div>
+                                    <div className="flex justify-between text-sm font-semibold text-slate-500">
+                                        <span>Delivery (Express)</span>
+                                        <span className="text-slate-900 dark:text-white">PKR 150</span>
+                                    </div>
+                                    <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-end">
+                                        <div>
+                                            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Total Payable</p>
+                                            <p className="text-3xl font-black tracking-tighter text-[#c52026]">PKR 1,170</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-8">
+                                    <button className="w-full py-5 bg-[#c52026] hover:bg-red-700 text-white font-black text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
+                                        <span className="material-symbols-outlined text-2xl">shopping_bag</span>
+                                        Place Order Now
+                                    </button>
+                                </div>
                             </div>
-                            <div className="flex justify-between items-end mb-10"><span className="text-xs font-black uppercase text-slate-400">Total Payable</span><span className="text-4xl font-black text-secondary dark:text-white">PKR 1,020</span></div>
-                            <button className="w-full bg-secondary hover:bg-secondary-dark text-white font-bold py-6 rounded-3xl shadow-premium transition-all flex items-center justify-center gap-3 text-lg group"><PackageCheck className="w-6 h-6" />Place Order Now</button>
                         </div>
                     </div>
                 </div>
             </main>
-        </motion.div>
+        </div>
     );
 };
 
