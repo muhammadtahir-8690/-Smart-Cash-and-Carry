@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fresh Vegetables | Smart Cash and Carry Narowal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#cc2128", // Red from the logo
+                        secondary: "#1e2a78", // Blue from the logo
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        :root {
+            --brand-red: #cc2128;
+            --brand-blue: #1e2a78;
+        }
+        .product-card-hover:hover .quick-view-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<div class="bg-secondary text-white py-2 text-xs font-semibold tracking-wide border-b border-white/10 sticky top-0 z-[60]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-2 hover:text-red-400 transition-colors" href="tel:03008800425">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                03008800425
+            </a>
+<a class="flex items-center gap-2 hover:text-red-400 transition-colors" href="mailto:smartcashandcarry@gmail.com">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                smartcashandcarry@gmail.com
+            </a>
+</div>
+<div class="hidden sm:flex items-center gap-4">
+<span>Store Location: Main Bazaar, Narowal</span>
+<span class="w-px h-3 bg-white/20"></span>
+<span class="text-red-400">Pay Less. Expect More..</span>
+</div>
+</div>
+</div>
+<header class="sticky top-[36px] z-50 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<div class="bg-[var(--brand-red)] p-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-white text-xl">shopping_cart</span>
+</div>
+<div class="flex flex-col leading-tight">
+<span class="text-2xl font-black tracking-tighter text-[var(--brand-blue)] dark:text-blue-400">SMART</span>
+<span class="text-[10px] font-bold text-[var(--brand-red)] uppercase tracking-widest -mt-1">Cash &amp; Carry</span>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden md:flex flex-1 max-w-xl mx-12">
+<div class="relative w-full">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary transition-all text-sm placeholder:text-slate-400" placeholder="Search fresh vegetables and groceries..." type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-3 text-slate-400">search</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="p-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors relative text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1.5 right-1.5 bg-primary text-white text-[9px] font-black px-1.5 py-0.5 rounded-full border-2 border-white dark:border-slate-900">3</span>
+</button>
+<button class="p-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors text-slate-600 dark:text-slate-300" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-10">
+<nav aria-label="Breadcrumb" class="flex text-xs font-semibold text-slate-400 dark:text-slate-500 mb-6 uppercase tracking-wider">
+<ol class="flex items-center space-x-2">
+<li><a class="hover:text-primary transition-colors" href="#">Smart Store</a></li>
+<li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+<li><a class="hover:text-primary transition-colors" href="#">Vegetables</a></li>
+<li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+<li class="font-bold text-slate-900 dark:text-white">Fresh Items</li>
+</ol>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200 dark:border-slate-800">
+<div>
+<h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight">Fresh Farm Vegetables</h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl">Premium hand-picked produce delivered from local farms to Narowal. Quality guaranteed at wholesale prices.</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Sort by:</span>
+<select class="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold px-4 py-2.5 focus:ring-primary focus:border-primary cursor-pointer shadow-sm">
+<option>Recommended</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Popularity</option>
+</select>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-10">
+<aside class="w-full lg:w-72 space-y-10 flex-shrink-0">
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 uppercase text-xs tracking-[0.2em]">
+<span class="material-symbols-outlined text-primary text-xl">tune</span>
+                    Price Filters
+                </h3>
+<div class="space-y-4 px-2">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" max="500" min="10" type="range"/>
+<div class="flex justify-between text-xs font-bold text-slate-500">
+<span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Rs. 10</span>
+<span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Rs. 500</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3 uppercase text-xs tracking-[0.2em]">
+<span class="material-symbols-outlined text-secondary text-xl">agriculture</span>
+                    Sourced From
+                </h3>
+<div class="space-y-3">
+<label class="flex items-center justify-between group cursor-pointer p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Green Valley Farm</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">12</span>
+</label>
+<label class="flex items-center justify-between group cursor-pointer p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Narowal Organic Coop</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">08</span>
+</label>
+<label class="flex items-center justify-between group cursor-pointer p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Basit's Fresh Pick</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">05</span>
+</label>
+</div>
+</div>
+<div class="bg-gradient-to-br from-secondary to-blue-900 p-8 rounded-3xl text-white relative overflow-hidden group shadow-xl">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">local_shipping</span>
+</div>
+<div class="relative z-10">
+<span class="bg-primary text-white text-[10px] uppercase font-black px-3 py-1 rounded-full mb-4 inline-block">Member Perk</span>
+<h4 class="font-black text-2xl mb-2 leading-tight">Free Delivery!</h4>
+<p class="text-blue-100 text-sm mb-6 leading-relaxed">On orders above Rs. 1500 for all Smart Members in Narowal City.</p>
+<a class="inline-flex items-center gap-2 bg-white text-secondary px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-red-500 hover:text-white transition-all shadow-lg" href="#">
+                        Join Now <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</div>
+</aside>
+<div class="flex-1">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="product-card-hover group bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] p-5 hover:shadow-[0_20px_50px_rgba(204,33,40,0.12)] transition-all duration-500 flex flex-col relative">
+<div class="relative aspect-square mb-6 rounded-[2rem] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<img alt="Fresh Tomatoes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm39Aojmm5ALx4fAjKi2CVegO8V7yPxuwzGpjin6y8Wpz6DIWXO0rsw6cT8BvQpuwIoWBXAiMU2yKWeCx_i-u-j3AeNb5xL5Ov2JSBI0sFXRujBq5l-BrQoi61JkTu3TeRNkDCXnqkCvQ452rbqqJPsYt1rYenw1SEM1ATPwRQlDXpRlF88y-6EBf-tRrNBoCTRWdQ8TIycghoSCxTocYlmfzHgd65LtQqU0WLe6kBSBSnTiQXXw1LrOJ0izca1SuPVyVT_uHml-LM"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-primary text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-lg">SAVE 20%</span>
+<span class="bg-secondary text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-lg">ORGANIC</span>
+</div>
+<button class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 p-2.5 rounded-full backdrop-blur-md text-slate-400 hover:text-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view-btn absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="bg-white text-slate-900 px-6 py-3 rounded-2xl font-bold shadow-2xl hover:bg-primary hover:text-white transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">visibility</span>
+                                Quick View
+                            </button>
+</div>
+</div>
+<div class="flex-1 px-1">
+<div class="flex items-center gap-1 mb-2">
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base">star</span>
+</div>
+<span class="text-[11px] font-bold text-slate-400">(4.0)</span>
+</div>
+<p class="text-[10px] uppercase font-bold text-primary tracking-widest mb-1">Narowal Farms</p>
+<h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-secondary transition-colors">Organic Red Tomatoes</h3>
+<div class="flex gap-2 mb-6">
+<button class="text-[11px] px-3 py-1.5 rounded-lg border-2 border-primary/20 bg-primary/5 text-primary font-bold hover:border-primary transition-colors">500g</button>
+<button class="text-[11px] px-3 py-1.5 rounded-lg border-2 border-slate-100 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold hover:border-slate-300 transition-colors">1kg</button>
+</div>
+<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 line-through font-medium">Rs. 150</span>
+<span class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Rs. 120</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-auto">
+<div class="flex items-center bg-slate-100 dark:bg-slate-700 rounded-2xl p-1.5 shadow-inner">
+<button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-slate-600 transition-all"><span class="material-symbols-outlined text-lg">remove</span></button>
+<span class="px-3 font-bold text-sm">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-slate-600 transition-all text-primary"><span class="material-symbols-outlined text-lg">add</span></button>
+</div>
+<button class="flex-1 bg-secondary hover:bg-primary text-white font-bold py-4 rounded-2xl shadow-lg shadow-secondary/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+                            Add
+                        </button>
+</div>
+</div>
+<div class="product-card-hover group bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] p-5 hover:shadow-[0_20px_50px_rgba(204,33,40,0.12)] transition-all duration-500 flex flex-col relative">
+<div class="relative aspect-square mb-6 rounded-[2rem] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<img alt="Fresh Broccoli" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPoWfH0mLpZDem8H0KLNhGdnegIlaDdRvVv0xInDQ89j0-680U6ehy0V3XegSux071IHW7_HcqunQJDJcwq7DZq0-D-SuveHSzAwDebkCCOnfMN2rWlLXbY5GcaV6W4F7lwjLFBNNBCsl0SG4afsNqQcbZKZTRMHmFXe0cDLzhVJUS0EJQtCiTWi0W1lhl98Px-LGZTETSqrcTMb8Onp2mBn6256r4KumxfDHl-LegZlcYY2PLnwTjXnBtDPiU5ho0FyqdTsXuScCu"/>
+<div class="absolute top-4 left-4">
+<span class="bg-green-600 text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-lg">PREMIUM</span>
+</div>
+<button class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 p-2.5 rounded-full backdrop-blur-md text-slate-400 hover:text-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view-btn absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="bg-white text-slate-900 px-6 py-3 rounded-2xl font-bold shadow-2xl hover:bg-primary hover:text-white transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">visibility</span>
+                                Quick View
+                            </button>
+</div>
+</div>
+<div class="flex-1 px-1">
+<div class="flex items-center gap-1 mb-2">
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+</div>
+<span class="text-[11px] font-bold text-slate-400">(5.0)</span>
+</div>
+<p class="text-[10px] uppercase font-bold text-secondary tracking-widest mb-1">Imported Fresh</p>
+<h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-secondary transition-colors">Premium Green Broccoli</h3>
+<div class="flex gap-2 mb-6">
+<button class="text-[11px] px-3 py-1.5 rounded-lg border-2 border-primary/20 bg-primary/5 text-primary font-bold">250g</button>
+<button class="text-[11px] px-3 py-1.5 rounded-lg border-2 border-slate-100 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold">500g</button>
+</div>
+<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Rs. 240</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-auto">
+<div class="flex items-center bg-slate-100 dark:bg-slate-700 rounded-2xl p-1.5 shadow-inner">
+<button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-slate-600 transition-all"><span class="material-symbols-outlined text-lg">remove</span></button>
+<span class="px-3 font-bold text-sm">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-slate-600 transition-all text-primary"><span class="material-symbols-outlined text-lg">add</span></button>
+</div>
+<button class="flex-1 bg-secondary hover:bg-primary text-white font-bold py-4 rounded-2xl shadow-lg shadow-secondary/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+                            Add
+                        </button>
+</div>
+</div>
+<div class="product-card-hover group bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] p-5 hover:shadow-[0_20px_50px_rgba(204,33,40,0.12)] transition-all duration-500 flex flex-col relative">
+<div class="relative aspect-square mb-6 rounded-[2rem] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<img alt="Potatoes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmFnyA6w6eUg9MJDFkiUztH39jDbMbo593xhcgFWXka2ZoqbalilM0WHaTNBB4J--teOKIB8jWFSk2Lp6T4ElEVbRbjh0q9OV7247iI9S_OeIuXpzipT9bZ0tiid75KIOH5Qcti3BqICGX3mgWOkY104XCLmc79MZr3tv7LoilJZFP4nJLYaoE07m9FVQbebmRvwrH25Rm1rZsZwixtfiugbUMl_Nr8ea9s4O8YKKEPWsGTF4mm3J5cMR49diqa3Wj4uslMGICDIZo"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-orange-500 text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-lg">SAVE 10%</span>
+<span class="bg-secondary text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-lg">BEST SELLER</span>
+</div>
+<button class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 p-2.5 rounded-full backdrop-blur-md text-slate-400 hover:text-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view-btn absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="bg-white text-slate-900 px-6 py-3 rounded-2xl font-bold shadow-2xl hover:bg-primary hover:text-white transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">visibility</span>
+                                Quick View
+                            </button>
+</div>
+</div>
+<div class="flex-1 px-1">
+<div class="flex items-center gap-1 mb-2">
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star</span>
+<span class="material-symbols-outlined text-base fill-1">star_half</span>
+</div>
+<span class="text-[11px] font-bold text-slate-400">(4.8)</span>
+</div>
+<p class="text-[10px] uppercase font-bold text-secondary tracking-widest mb-1">Local Produce</p>
+<h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-secondary transition-colors">Desi Potatoes (Aloo)</h3>
+<div class="flex gap-2 mb-6">
+<button class="text-[11px] px-3 py-1.5 rounded-lg border-2 border-slate-100 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold hover:border-slate-300 transition-colors">1kg</button>
+<button class="text-[11px] px-3 py-1.5 rounded-lg border-2 border-primary/20 bg-primary/5 text-primary font-bold">5kg</button>
+</div>
+<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 line-through font-medium">Rs. 500</span>
+<span class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Rs. 450</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-auto">
+<div class="flex items-center bg-slate-100 dark:bg-slate-700 rounded-2xl p-1.5 shadow-inner">
+<button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-slate-600 transition-all"><span class="material-symbols-outlined text-lg">remove</span></button>
+<span class="px-3 font-bold text-sm">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-slate-600 transition-all text-primary"><span class="material-symbols-outlined text-lg">add</span></button>
+</div>
+<button class="flex-1 bg-secondary hover:bg-primary text-white font-bold py-4 rounded-2xl shadow-lg shadow-secondary/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+                            Add
+                        </button>
+</div>
+</div>
+</div>
+<div class="mt-16 flex justify-center">
+<nav class="flex items-center gap-2 bg-white dark:bg-slate-800 p-2.5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+<button class="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors disabled:opacity-30">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary text-white font-black shadow-lg shadow-primary/20">1</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-700 font-bold transition-colors">2</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-700 font-bold transition-colors">3</button>
+<span class="px-2 text-slate-400 font-black tracking-widest">...</span>
+<button class="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-700 font-bold transition-colors">12</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+<div class="col-span-1 lg:col-span-1">
+<div class="flex flex-col mb-8">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-xl">
+<span class="material-symbols-outlined text-white text-2xl">shopping_basket</span>
+</div>
+<div class="flex flex-col leading-tight">
+<span class="text-2xl font-black tracking-tighter text-white">SMART</span>
+<span class="text-[11px] font-bold text-red-500 uppercase tracking-[0.2em] -mt-1">Cash &amp; Carry</span>
+</div>
+</div>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed mb-8 italic">
+                    "Pay Less. Expect More.." - Narowal's leading smart grocery destination. Premium quality fresh vegetables sourced daily from our partner local farmers.
+                </p>
+<div class="flex gap-4">
+<a class="w-11 h-11 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary hover:border-primary transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="w-11 h-11 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary hover:border-primary transition-all shadow-sm" href="mailto:smartcashandcarry@gmail.com">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-black text-white mb-8 uppercase text-xs tracking-[0.25em] flex items-center gap-2">
+<span class="w-6 h-[2px] bg-primary"></span>
+                    Company
+                </h4>
+<ul class="space-y-4 text-sm font-semibold">
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> About Smart Store</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Store Directory</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Quality Control</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Membership</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-white mb-8 uppercase text-xs tracking-[0.25em] flex items-center gap-2">
+<span class="w-6 h-[2px] bg-primary"></span>
+                    Support
+                </h4>
+<ul class="space-y-4 text-sm font-semibold">
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Delivery Info</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Return Policy</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Order Status</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1 h-1 bg-slate-700 rounded-full"></span> Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-white mb-8 uppercase text-xs tracking-[0.25em] flex items-center gap-2">
+<span class="w-6 h-[2px] bg-primary"></span>
+                    Store Info
+                </h4>
+<ul class="space-y-5 text-sm">
+<li class="flex items-start gap-4 group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">location_on</span>
+<span class="font-medium">Main Bazaar, Narowal City, Punjab, Pakistan</span>
+</li>
+<li class="flex items-start gap-4 group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">phone</span>
+<a class="font-bold text-white hover:text-primary transition-colors" href="tel:03008800425">03008800425</a>
+</li>
+<li class="flex items-start gap-4 group overflow-hidden">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">email</span>
+<a class="font-medium hover:text-primary transition-colors truncate" href="mailto:smartcashandcarry@gmail.com">smartcashandcarry@gmail.com</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest">© 2024 Smart Cash and Carry Narowal. Built for Quality.</p>
+<div class="flex gap-6 items-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+<img alt="Visa" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6fOFpZ8rO-8d9XVLJlEgCCS5y2KSWdMDlHGvUk9l8kuq0C_pegqIUecD5G3FAU0SA93LQB-KQVGcWTTr7fRpDr7bBPgjZ4Nl5I9d58FWVKCUq4KvikqC95m_aCsJVXgozPfeoXWrwayQNIqW4jqyr_4fl9tHnGfq_EUZuURREYeVPvEb-l1sbPWCmbQgAfxs1fklCAnUpJbbaq4wK7K17bgGsNsDNC9D1F1tdD3IX4oJV8CXpeMQ94AVoMa4lSJ-aNQrHZ1zNRabS"/>
+<img alt="Mastercard" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU5IZT0uHxeEjYZvTrGh8RxJA16UhAFotnDIKkMvGt4wPAuJFfkdiK1T9buuIPIOan4k5zmULvuv-tHl9RjIBUVbkWt7VK0mgNJfo40q_0IFBPSCsrhR6OC1BiLF_pWKcOFjTJD1vY2RGqEGc0YX2pZsVHmjpzYj96o4hUIUabnGDkW-hmEd17iy4fEQWkw3JYZZrCRgZFYaPm2omPHJ3RzXE6aJqUev4ZR_aczIC79xBTEN6h4lBOblkKjnkEyv-Z-qej8ApSHUt2"/>
+</div>
+</div>
+</div>
+</footer>
+<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-3 px-6 z-[100] md:hidden shadow-[0_-10px_25px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center max-w-7xl mx-auto">
+<a class="flex-1 flex flex-col items-center gap-1 text-slate-600 dark:text-slate-400" href="tel:03008800425">
+<span class="material-symbols-outlined text-xl text-primary">call</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Call Now</span>
+</a>
+<div class="w-px h-8 bg-slate-200 dark:bg-slate-700"></div>
+<a class="flex-1 flex flex-col items-center gap-1 text-slate-600 dark:text-slate-400" href="mailto:smartcashandcarry@gmail.com">
+<span class="material-symbols-outlined text-xl text-secondary">email</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Email Us</span>
+</a>
+</div>
+</div>
+
+</body></html>

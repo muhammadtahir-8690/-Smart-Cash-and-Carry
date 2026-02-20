@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Cash and Carry - Pay Less. Expect More.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#c51c24", 
+                        secondary: "#1e1e7a",
+                        accent: "#f97316",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 30px -10px rgba(30, 30, 122, 0.12)',
+                        'hover': '0 20px 40px -15px rgba(30, 30, 122, 0.18)',
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .product-card {
+            @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-hover;
+        }
+        .nav-link {
+            @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full;
+        }
+    </style>
+</head>
+<body class="font-sans bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="bg-secondary text-white py-2 px-4 border-b border-white/10">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-[13px] font-medium">
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-1.5 hover:text-primary transition-colors" href="tel:03008800425">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                03008800425
+            </a>
+<a class="flex items-center gap-1.5 hover:text-primary transition-colors" href="mailto:smartcashandcarry@gmail.com">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                smartcashandcarry@gmail.com
+            </a>
+</div>
+<div class="flex items-center gap-4 mt-2 sm:mt-0">
+<span class="text-white/70">🎉 Grand Opening in Narowal!</span>
+<span class="w-px h-3 bg-white/20"></span>
+<button class="hover:text-primary transition-colors flex items-center gap-1" onclick="document.getElementById('support-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">headset_mic</span>
+                Customer Support
+            </button>
+</div>
+</div>
+</div>
+<nav class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-4xl font-bold transition-transform group-hover:scale-110">shopping_cart</span>
+<div class="w-10 h-1.5 bg-secondary mt-1 rounded-full group-hover:bg-primary transition-colors"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-3xl font-extrabold tracking-tighter text-secondary dark:text-white leading-[0.8]">SMART</span>
+<span class="text-[12px] uppercase tracking-[0.25em] font-bold text-primary">Cash &amp; Carry</span>
+<span class="text-[9px] italic text-slate-400 font-semibold tracking-wide mt-0.5">Pay Less. Expect More..</span>
+</div>
+</div>
+<div class="hidden md:flex flex-1 max-w-xl mx-12">
+<div class="relative w-full group">
+<input class="w-full pl-12 pr-4 py-3 bg-slate-100 dark:bg-slate-800 border-2 border-transparent focus:border-primary/20 focus:bg-white dark:focus:bg-slate-700 rounded-2xl text-sm transition-all outline-none" placeholder="Search fresh produce, staples, electronics..." type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+</div>
+<div class="flex items-center gap-2 lg:gap-4">
+<button class="p-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="p-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all relative text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">favorite</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<button class="flex items-center gap-3 bg-secondary hover:bg-primary text-white px-6 py-3 rounded-2xl transition-all shadow-premium hover:shadow-hover active:scale-95 group">
+<span class="material-symbols-outlined transition-transform group-hover:rotate-12">shopping_bag</span>
+<span class="font-bold text-sm">Cart (0)</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<header class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
+<div class="relative overflow-hidden rounded-[2.5rem] bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 min-h-[580px] flex items-center">
+<div class="relative z-10 pl-10 md:pl-20 max-w-2xl py-16">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-slate-100 dark:border-slate-600 text-primary text-xs font-extrabold mb-8 uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px] mr-2">local_shipping</span> 
+                Same Day Delivery in Narowal City
+            </div>
+<h1 class="text-6xl md:text-8xl font-black text-secondary dark:text-white leading-[0.9] mb-8 font-display">
+                Smart Cash <br/>and Carry <br/><span class="text-primary italic font-extrabold text-5xl md:text-7xl block mt-4">Narowal's Pride</span>
+</h1>
+<p class="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-md leading-relaxed">
+                Empowering Narowal with premium quality at wholesale prices. <span class="text-secondary dark:text-primary font-bold">Pay Less. Expect More..</span> every day.
+            </p>
+<div class="flex flex-wrap gap-5">
+<a class="px-10 py-5 bg-primary hover:bg-red-700 text-white font-black rounded-2xl transition-all shadow-xl shadow-primary/30 flex items-center gap-3 group" href="#">
+                    Shop Now <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="px-10 py-5 bg-white dark:bg-slate-700 text-secondary dark:text-white font-black rounded-2xl border-2 border-slate-100 dark:border-slate-600 hover:border-secondary/20 hover:bg-slate-50 dark:hover:bg-slate-600 transition-all shadow-sm" href="#">
+                    View Offers
+                </a>
+</div>
+</div>
+<div class="absolute inset-0 pointer-events-none">
+<img alt="Background Pattern" class="w-full h-full object-cover opacity-[0.08] dark:opacity-[0.05]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFKfLyKnfYQbIPNhg_xCYqOZ7mD_ps_yCMAj-Vs_6SavvrsfwMJ44X4JhxUBZbpW4kD39pNTTvuz-Ktv26wJtsWdRD8bCi33tO0V_Kfp8jiVGL2AaipZxUwZC2oXOxp498VCFUyX-0tl3GFs5ImUs84EHM30k6qjWjTAJTTRPQCcSEJm-4Xe_jCybscSkk5AWxayr-VvGfi4VuhA7PSJJY-hyPdOkKUxE1-1CIUEMRSPFCJdIxnSMnVLE60Wf3srL85IoQsHkO_3V-"/>
+<div class="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/60 to-transparent dark:from-slate-800 dark:via-slate-800/60"></div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 h-[90%] w-[45%] flex items-center justify-center p-12">
+<div class="relative w-full h-full">
+<img alt="Premium local produce" class="w-full h-full object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArNasdE9lM8UIxeRIuQi_9Zm1C9-mOWUn4SKUkgqKkGwmUyGXCvIwj7B4AHMTaf9OhDdonowJLviBmWLNILmmSnGG6YYGFmqE-1Cb0TNST9XjjHhsme-3NVen5Qv3637oEfjMqRE57UWvEu2fsRH2v0ne9ZX5FWq4xPIIaQlDz8AEJWWmGa9dmEVKpBlwmFHM4mO3L_1HHJ80_fxjgQ0RheTenzkn5N7N0rY-Rk9c6mx9Eq6730iNqqVKbK54xD2-RJ8DgiiiPDO31"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="flex justify-between items-end mb-12">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<div class="h-[2px] w-8 bg-primary"></div>
+<span class="text-primary font-black uppercase text-xs tracking-widest">Fresh Categories</span>
+</div>
+<h2 class="text-4xl font-black text-secondary dark:text-white">Shop by Department</h2>
+</div>
+<a class="group text-secondary dark:text-primary font-bold hover:underline flex items-center gap-2" href="#">
+            View All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</a>
+</div>
+<div class="flex gap-8 overflow-x-auto pb-6 hide-scrollbar">
+<a class="group flex-shrink-0 flex flex-col items-center gap-5" href="#">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-white dark:bg-slate-800 flex items-center justify-center p-6 border-2 border-slate-100 dark:border-slate-700 group-hover:border-primary group-hover:rotate-3 transition-all shadow-premium group-hover:shadow-hover">
+<img alt="Fruits" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMgsoOQtCNFaNjF-rdR-b3uM8VQyLL8zjg4FOYu4ra249JnPGz-FwL8ubn3fR0odkIXzHeuZ3-E3cWDZJ9nYBl6n1o0pafB_OSAkMRxwWD2U88H1GBnSUwLTMhcwKzs3Vtzn3T6WfUAOuJUrOEf7W0Rp1MtwUGDwp0g7wkBfTa-xHSKt_3kLD-fvRmEpER5JEa_jd2r1QYdmzPlJ8RUJb5SNcqNhzHa6k7od-RXpepqJyCdLk0MtCmxOPNfDRfLJrjIPcfQgoAU4Ye"/>
+</div>
+<span class="font-bold text-slate-800 dark:text-slate-200">Fresh Fruits</span>
+</a>
+<a class="group flex-shrink-0 flex flex-col items-center gap-5" href="#">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-white dark:bg-slate-800 flex items-center justify-center p-6 border-2 border-slate-100 dark:border-slate-700 group-hover:border-primary group-hover:-rotate-3 transition-all shadow-premium group-hover:shadow-hover">
+<img alt="Vegetables" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8nd6JKLIxryp7fX-5PNhyERV7hU40t1ABBeBVGv-7zsljeR8huWrrq7QhOAw8J2Y8jEuep9h3MsTwhijDyXs2U-LLO0aUpO6efYnJT97Z2vhLRFKNMPcIqMvqDlkiur5ibOxmByIA6DhmQ9l0LtFHLZjG1yzprXJ8iRDljBya5ASm6JNbH5vC-y0Ch3yJBJMv3MPOciTdFjRF7uUt4A29uWt1xICFMp0Dyapd4xXYxQFa87J6juzBG044C-6Tm0BZB2Nvqk7hjkH5"/>
+</div>
+<span class="font-bold text-slate-800 dark:text-slate-200">Vegetables</span>
+</a>
+<a class="group flex-shrink-0 flex flex-col items-center gap-5" href="#">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-white dark:bg-slate-800 flex items-center justify-center p-6 border-2 border-slate-100 dark:border-slate-700 group-hover:border-secondary group-hover:rotate-3 transition-all shadow-premium group-hover:shadow-hover">
+<img alt="Dairy" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZTLtMmumVZGy-mq3lPULMA0AWI12Aga64rMQ9vN3PjoUCR-zd8bM94pGEjgFw4BaSRfFep0i4W2ZlVWqSpnVshmbi3hd8Q97SS87DmEeeb0pahmH9uJFsol6d-QvLewzyM7TOIomI1pgCsbBrkE8F9Qe1Sgp65HTSY0DfO99hz_OswPVSW_wo6TzmL-2n_2a-WSQjA3tKmHG5oO-4ZVNo_wLCS58DhZaUBSGZXM0G8FNs-MJiytLO0hl1VGCM43S78NYnSX7yEqfD"/>
+</div>
+<span class="font-bold text-slate-800 dark:text-slate-200">Dairy &amp; Eggs</span>
+</a>
+<a class="group flex-shrink-0 flex flex-col items-center gap-5" href="#">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-white dark:bg-slate-800 flex items-center justify-center p-6 border-2 border-slate-100 dark:border-slate-700 group-hover:border-secondary group-hover:-rotate-3 transition-all shadow-premium group-hover:shadow-hover">
+<img alt="Staples" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRNvNKCydgO-y59h7S7XcKznQUaUCfam-zbmI1wZ5u-QJ6zXXM95LsWLoP2spxeYYZVN9Q6lUbds5FtTfnpSOgoTOFDBBF6lcveVbiis89DAewghfMulyH51-ESqtat0tsO0KX363XzaLAlRpQs1UT0249uDEo-4CWgNfMG-sOzY35ptQcWY5D6zMvGqV6c_T7KGqy_DO4aKD1LitBBRc2S_zqwIyD55TpqaPdSxG5ukAjacK2aJnLwuUy8R_cGm-tNGEDZ3BPo_hG"/>
+</div>
+<span class="font-bold text-slate-800 dark:text-slate-200">Pantry Staples</span>
+</a>
+<a class="group flex-shrink-0 flex flex-col items-center gap-5" href="#">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-white dark:bg-slate-800 flex items-center justify-center p-6 border-2 border-slate-100 dark:border-slate-700 group-hover:border-primary group-hover:rotate-3 transition-all shadow-premium group-hover:shadow-hover">
+<img alt="Meat" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkFWu8pBuTa3nWa8Uh_V6iTRMlzOPGfLHLg97Clfwrlda6gVanI0RVrSegq8DHFjFcY4gG8GzN5epgi4rC3SotDWI9GIsBDxuvqCsEV09s005b7apOSVq42L-dtzeQljHK4e_S5wAgWZuADFUUQEi2KjqhbCDjceSi1gJAEBrc4Gf_A6Z7bnIVQ4SFZzpOdU_1buZmB2KmhZf0rOdQzLkA8fa4o4vTuCN06BTgLEX7zKJ20rHGZk7TEl_6BrnidTxRmh9K14EbG8pn"/>
+</div>
+<span class="font-bold text-slate-800 dark:text-slate-200">Meat &amp; Fish</span>
+</a>
+<a class="group flex-shrink-0 flex flex-col items-center gap-5" href="#">
+<div class="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-white dark:bg-slate-800 flex items-center justify-center p-6 border-2 border-slate-100 dark:border-slate-700 group-hover:border-primary group-hover:-rotate-3 transition-all shadow-premium group-hover:shadow-hover">
+<img alt="Bakery" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQCjtUowNy6C4vLgUbmLxYkq4PEaVHNG_pnn9yaG1AB86SKnHJhldPTRuZAB5esQZQuf9kV3cc-pDz4TXGN82_z_IhGvzIuaYfDzOz24Vc4GOLuh_iivBhq7ts0CrCNfo7ccgxQyK0VeEk8ZKfCIm587ab6FBfdMO3twzpZLpynzy3NcQ2qjQAdgUHrpZHJ42W64UQfDaRPVJYMxSgRqoRitGiq5JT9X4dAyLMux-qN0a-9Ud1yiUv-vvTCwJ5nFN03oq1Mj9TLt0W"/>
+</div>
+<span class="font-bold text-slate-800 dark:text-slate-200">Bakery</span>
+</a>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="flex items-center gap-4 mb-10">
+<h2 class="text-4xl font-black text-secondary dark:text-white">Trending Favorites</h2>
+<span class="px-4 py-1.5 bg-primary text-white text-[11px] font-black rounded-full uppercase tracking-[0.2em] shadow-lg shadow-primary/20">Hot Now</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+<div class="product-card group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-premium relative">
+<button class="absolute top-5 right-5 z-10 p-2 rounded-xl bg-slate-50 dark:bg-slate-700 text-slate-400 hover:text-primary hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<div class="aspect-square bg-slate-50 dark:bg-slate-900 rounded-2xl mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+<img alt="Fresh Tomatoes" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxKU3fks0H_zcJsGegH-O_mC1Jwh1zIVqUhmmZ6WpmxzvvSY0JJp3xR66zZWNKaxVcKAwvSx2w1xBmS2nMi4CeiD5rbezbGgcR1cmzXnYEor4UBZycCzZLLey7uJrW0bH9EWyAX0s34iI74gz_4XX6mlhrPDPj-RI5mHhgAWt3MRBl_jrEcSWTYv6ePZV4eZtVX_iSGHL_EFLY29BWs_WAg2qXrcyTOcwMGlv1TsttbrB6Ewt7bOJIX8jnd_jK6IY1jjTC-8GvIHCr"/>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] uppercase font-black text-primary tracking-widest">Vegetables</p>
+<h3 class="font-bold text-secondary dark:text-slate-100 text-lg leading-tight group-hover:text-primary transition-colors">Fresh Farm Tomatoes</h3>
+<p class="text-sm text-slate-500">1kg - Regular Selection</p>
+<div class="flex items-center justify-between pt-4">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-secondary dark:text-white">Rs. 180</span>
+<span class="text-xs text-slate-400 line-through">Rs. 220</span>
+</div>
+<button class="w-12 h-12 bg-secondary text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-lg active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-premium relative">
+<button class="absolute top-5 right-5 z-10 p-2 rounded-xl bg-slate-50 dark:bg-slate-700 text-slate-400 hover:text-primary hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<div class="aspect-square bg-slate-50 dark:bg-slate-900 rounded-2xl mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+<img alt="Bananas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pftLmvgTQ4rfovYkMJz4_2JhgmhHquT9d-jFXqH96flhqnMvBYwkqogRJ1RQZHzGuzBSNPFI20wXxRc92r9102TaSZFLHlr4GbjDQkt4hhe0BTLatbsz_tZ9R0uUWd-I3iM_fD3imyumoAUsg4OtxEHvP-YDZSpaBw_ejdweUsXJpHj30CS7Ztm3utkJbAFdnc8I9vU_gWo02ld7dH7Tu9nDrt25nj6M-fd02HSqzcHuz0ZtcJP_QkRQP_t-Fh03-qToKQludu9S"/>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] uppercase font-black text-primary tracking-widest">Fruits</p>
+<h3 class="font-bold text-secondary dark:text-slate-100 text-lg leading-tight group-hover:text-primary transition-colors">Organic Bananas</h3>
+<p class="text-sm text-slate-500">12 pcs - Fresh Picked</p>
+<div class="flex items-center justify-between pt-4">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-secondary dark:text-white">Rs. 150</span>
+<span class="text-xs text-slate-400 line-through">Rs. 180</span>
+</div>
+<button class="w-12 h-12 bg-secondary text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-lg active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-premium relative">
+<button class="absolute top-5 right-5 z-10 p-2 rounded-xl bg-slate-50 dark:bg-slate-700 text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<div class="aspect-square bg-slate-50 dark:bg-slate-900 rounded-2xl mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+<img alt="Orange Juice" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3_wyJ6XttQSdyuRG7ioURtG36bkFMzxPYy55sQe9YjA6UPpfvodgBKBE50yLMxabWf39P58L5w8ih1Pv4UYBhH8Fzq-0A_xB5efPZjk2dcfBRqK9TspY4lK26NTTbhLG-8bQr_v89i3aH1u6RcfH1VE1XG2iQWp8VdOcrKpMsxYlGzDrnMJ7hZq-_wnJeiSnDVzdRTGibuij-z32VPqJvrEpPKLKwhm-w9_41T8W9Mo_tsU-CW9cxRZoh2VKeYtKLKT439lpYqr1m"/>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] uppercase font-black text-primary tracking-widest">Beverages</p>
+<h3 class="font-bold text-secondary dark:text-slate-100 text-lg leading-tight group-hover:text-primary transition-colors">Pure Orange Juice</h3>
+<p class="text-sm text-slate-500">1 Liter - Cold Pressed</p>
+<div class="flex items-center justify-between pt-4">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-secondary dark:text-white">Rs. 450</span>
+</div>
+<button class="w-12 h-12 bg-secondary text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-lg active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-premium relative">
+<button class="absolute top-5 right-5 z-10 p-2 rounded-xl bg-slate-50 dark:bg-slate-700 text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<div class="aspect-square bg-slate-50 dark:bg-slate-900 rounded-2xl mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+<img alt="Atta" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5n-gK_vKsZudsKk3Ir_dAa6zS8E98dQjJVGkWDl0mE5YqKduqBV0pei2eVIG-lhbGTkTLiVDkzXeHMmO2tbRBvNCBCl98wUwANbPRDeHKPeC_LiGEtEpFWORJHYma3v973VVEuIcyfEolikdoq0BRunPRlqg1WUhFLR3A7vb7aTKQ-EbqTVyUgAlH07RzXCypn26FJYijDdnBzrjusFegJL3iWByUjV2gtiV7Ns2WR5cULlWSeYROdbcp8Q3BPhVfNKjnjbxHuy-n"/>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] uppercase font-black text-primary tracking-widest">Staples</p>
+<h3 class="font-bold text-secondary dark:text-slate-100 text-lg leading-tight group-hover:text-primary transition-colors">Premium Chakki Atta</h3>
+<p class="text-sm text-slate-500">5kg - Pure Whole Wheat</p>
+<div class="flex items-center justify-between pt-4">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-secondary dark:text-white">Rs. 640</span>
+</div>
+<button class="w-12 h-12 bg-secondary text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-lg active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-premium relative">
+<button class="absolute top-5 right-5 z-10 p-2 rounded-xl bg-slate-50 dark:bg-slate-700 text-slate-400 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+</button>
+<div class="aspect-square bg-slate-50 dark:bg-slate-900 rounded-2xl mb-5 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+<img alt="Milk" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKym-Qnc-fBcP96IXX6KOQKqJEbUOqfoN18f0KZhsrbxbd-NB25BkAZ73JPzwmwjEn49vOgi9lVJZ97cR6D36fh1kBIzYx8Q5K2GhG2EbJJRGRq29I_wX1bHXdq8xC5USBMI1V0j_pI9kLAuiOVGh7gUrmYnOYCXOl92V8qeSy1EbV1DwyqRXTfDCJjd8yMuEF1ARp8C6BdKuQVlnNGcGcuY6EkB_Es82rv8O4iAe0eJ92GgCJUTgi7BMBBLPUh1obAMKikb9JNxb5"/>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] uppercase font-black text-primary tracking-widest">Dairy</p>
+<h3 class="font-bold text-secondary dark:text-slate-100 text-lg leading-tight group-hover:text-primary transition-colors">Fresh Local Milk</h3>
+<p class="text-sm text-slate-500">1 Liter - Pure Selection</p>
+<div class="flex items-center justify-between pt-4">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-secondary dark:text-white">Rs. 210</span>
+</div>
+<button class="w-12 h-12 bg-secondary text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-lg active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800">
+<div class="bg-secondary dark:bg-slate-800 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-black text-white mb-6 font-display">Never Miss a Fresh Delivery</h2>
+<p class="text-slate-300 text-lg mb-12">Join over 10,000+ Narowal families getting fresh stock updates and secret weekly vouchers.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+<input class="flex-1 px-8 py-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="yourname@email.com" required="" type="email"/>
+<button class="px-10 py-5 bg-primary hover:bg-red-700 text-white font-black rounded-2xl transition-all shadow-xl shadow-primary/30 active:scale-95" type="submit">Join Now</button>
+</form>
+<div class="mt-12 flex flex-wrap justify-center gap-8">
+<div class="flex items-center gap-3 text-white/80 font-medium">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span>No Spam Guaranteed</span>
+</div>
+<div class="flex items-center gap-3 text-white/80 font-medium">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<span>Daily Deal Alerts</span>
+</div>
+</div>
+</div>
+<div class="absolute top-0 left-0 w-80 h-80 bg-primary/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+<div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+</div>
+</section>
+<footer class="bg-white dark:bg-slate-950 pt-20 pb-10 border-t border-slate-100 dark:border-slate-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+<div class="space-y-8">
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-3xl font-bold">shopping_cart</span>
+<div class="w-8 h-1 bg-secondary mt-0.5 rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-2xl font-black tracking-tighter text-secondary dark:text-white leading-none">SMART</span>
+<span class="text-[10px] uppercase tracking-widest font-extrabold text-primary">Cash &amp; Carry</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
+                    Narowal's premier retail destination for groceries and household needs. We bridge the gap from farm to fork with quality and care.
+                    <span class="block mt-4 italic font-black text-secondary dark:text-primary">Pay Less. Expect More..</span>
+</p>
+<div class="flex gap-5">
+<a class="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white hover:-translate-y-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined">social_leaderboard</span>
+</a>
+<a class="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white hover:-translate-y-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined">camera</span>
+</a>
+<a class="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white hover:-translate-y-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-black text-secondary dark:text-white mb-8 text-lg">Quick Links</h4>
+<ul class="space-y-4">
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">About Our Store</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Fresh Produce Farm</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Weekly Hot Deals</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Monthly Stock Bundles</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Store Locator</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-secondary dark:text-white mb-8 text-lg">Support &amp; Help</h4>
+<ul class="space-y-4">
+<li><button class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block text-left" onclick="document.getElementById('support-modal').classList.remove('hidden')">Customer Support</button></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Delivery Information</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Returns &amp; Refunds</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Terms &amp; Conditions</a></li>
+<li><a class="nav-link text-slate-500 dark:text-slate-400 hover:text-primary transition-colors py-1 inline-block" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-secondary dark:text-white mb-8 text-lg">Store Information</h4>
+<ul class="space-y-6">
+<li class="flex gap-4 group">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+</div>
+<span class="text-slate-500 dark:text-slate-400 text-sm">Main Bazar Road, Near City Chowk,<br/>Narowal City, Punjab, Pakistan</span>
+</li>
+<li class="flex gap-4 group">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">call</span>
+</div>
+<div class="flex flex-col">
+<a class="text-secondary dark:text-white font-bold hover:text-primary transition-colors" href="tel:03008800425">03008800425</a>
+<span class="text-xs text-slate-400">Order by Phone</span>
+</div>
+</li>
+<li class="flex gap-4 group">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">mail</span>
+</div>
+<div class="flex flex-col">
+<a class="text-secondary dark:text-white font-bold hover:text-primary transition-colors" href="mailto:smartcashandcarry@gmail.com">smartcashandcarry@gmail.com</a>
+<span class="text-xs text-slate-400">Online Inquiries</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-10 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
+<p class="text-slate-400 text-sm font-medium">© 2024 Smart Cash and Carry. Designed with pride for Narowal.</p>
+<div class="flex items-center gap-8">
+<img alt="Payment Methods" class="h-6 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-help" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQHFDNkHxOwBpfIuPGQwnWvWFPsMMm6n62XSRvcnA15pK4N4t6kFYYIvm4hGa85hiH9UfP_-cwDP4O2_0VrzSrI4vNVZ_O2Fei_U6GFtyIRwwM2CyxR3dOk8sU1BBMCSa77Ia5EXunfGZ_kUsXBFvY9R0U8GUkXu0OQhG-glvAp9PSfxL4BSErNiz1KwzT5YIGvWFKguvSJFMylSUalfKSnI_AQ1QsUTiJeuS83qh044gSgkYx3BfiXqv0FZMszzZ63m6gmLNen5qO"/>
+<img alt="Payment Methods" class="h-6 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-help" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9IdWIdcn3MiKydcGXHT63glm-_nRqb44UGfuVXOBrFJ2Awa3u8cRNV_EdhXO--iHUdPE4PfkK5TkbPMlXY-QRtdzB_TRl5LshDSu_aI4GfjDb1DR58V88H9srdFHVwRQ_QhN_lwb__rfEJ2UtfIgW5oane2kPnbwES20eCP6uRuzX58ZkS-Yq2p89CAwSL4NpKn9NkUGAbFJlepYZ7K-f_bcYo2HyOTz8J87uZ-lpSsS09R4WCfz68D_6YpR6emvSGyFnhpdxhmJC"/>
+<img alt="Payment Methods" class="h-8 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-help" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiltrn4vMATwxpiMkaOFk9fa9nc2ZfYJvScsEwzm9oM00G6mQt1wyijztKYOvlV9OcQ-J18s4-nXLlLH1s3KR6Fenwh2TAGgAfTbG7l3gr520XDNPcmuQ9oecOLSqesbRjSFOr_3oTt4LVw__40g8pUmkiZWJxwa4DBJ63pf43hlNxu_ojI8J_Z0e2OGooR269Chn6eHof4znXNv2tkAZN0H4o1CulmHEao90IxF6Vb806s9l-GBoZVs59iY-xx9y74hqDifet7fWg"/>
+</div>
+</div>
+</div>
+</footer>
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-secondary/80 backdrop-blur-sm" id="support-modal">
+<div class="bg-white dark:bg-slate-900 rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+<div class="bg-primary p-8 text-white relative">
+<button class="absolute top-6 right-6 hover:rotate-90 transition-transform" onclick="document.getElementById('support-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h3 class="text-3xl font-black mb-2">Customer Support</h3>
+<p class="text-white/80">How can we help you today?</p>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex items-center gap-5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<div class="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-black">Call Us Now</p>
+<a class="text-xl font-black text-secondary dark:text-white" href="tel:03008800425">03008800425</a>
+</div>
+</div>
+<div class="flex items-center gap-5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-black">Email Support</p>
+<a class="text-lg font-bold text-secondary dark:text-white" href="mailto:smartcashandcarry@gmail.com">smartcashandcarry@gmail.com</a>
+</div>
+</div>
+<div class="flex items-center gap-5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">chat</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase font-black">WhatsApp Chat</p>
+<a class="text-lg font-bold text-secondary dark:text-white" href="https://wa.me/923008800425">Start a Conversation</a>
+</div>
+</div>
+<button class="w-full py-4 text-slate-500 font-bold hover:text-primary transition-colors" onclick="document.getElementById('support-modal').classList.add('hidden')">Close Window</button>
+</div>
+</div>
+</div>
+<button class="fixed bottom-8 right-8 bg-secondary dark:bg-white text-white dark:text-slate-900 w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl z-50 transition-all hover:scale-110 active:scale-90" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined dark:hidden text-2xl">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block text-2xl">light_mode</span>
+</button>
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-8 py-4 flex justify-between items-center z-50 rounded-t-[2rem] shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">category</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Deals</span>
+</button>
+<div class="-mt-12 bg-secondary p-4 rounded-2xl shadow-xl shadow-secondary/30">
+<span class="material-symbols-outlined text-white">shopping_cart</span>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Saved</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Profile</span>
+</button>
+</div>
+
+</body></html>
