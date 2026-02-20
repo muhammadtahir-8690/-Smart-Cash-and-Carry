@@ -281,10 +281,18 @@ const Checkout = () => {
                                                 <div className="mt-4 p-6 bg-white dark:bg-slate-900 rounded-[24px] border border-slate-100 dark:border-slate-800 space-y-6">
                                                     <div className="flex items-center gap-4 p-4 bg-[#00d084]/5 rounded-2xl border border-[#00d084]/20">
                                                         <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                                                            <img src="https://sadapay.pk/wp-content/uploads/2022/06/SadaPay-Logo.png" className="w-8" alt="SadaPay" />
+                                                            <svg className="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M48.243 20.5C32.093 20.5 24 30.5 24 45.5C24 60.5 32.093 70.5 48.243 70.5H53.757C69.907 70.5 78 60.5 78 45.5C78 30.5 69.907 20.5 53.757 20.5H48.243Z" fill="#00D084" fillOpacity="0.1" />
+                                                                <path d="M42 35C35 35 30 40 30 47.5C30 55 35 60 42 60H45V55H42C38 55 35 52 35 47.5C35 43 38 40 42 40H58C62 40 65 43 65 47.5C65 52 62 55 58 55H55V60H58C65 60 70 55 70 47.5C70 40 65 35 58 35H42Z" fill="#00D084" />
+                                                                <path d="M55 52V65H50V52H55Z" fill="#FF6D6D" />
+                                                                <circle cx="52.5" cy="47.5" r="2.5" fill="#FF6D6D" />
+                                                            </svg>
                                                         </div>
-                                                        <div>
-                                                            <p className="text-sm font-bold text-slate-800 dark:text-white">Pay with SadaPay Wallet</p>
+                                                        <div className="flex-1">
+                                                            <div className="flex justify-between items-center mb-0.5">
+                                                                <p className="text-sm font-bold text-slate-800 dark:text-white">Pay with SadaPay Wallet</p>
+                                                                <span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[8px] font-black uppercase tracking-wider rounded-md">Demo Mode</span>
+                                                            </div>
                                                             <p className="text-[10px] text-slate-500">Fast & seamless mobile payments</p>
                                                         </div>
                                                     </div>
