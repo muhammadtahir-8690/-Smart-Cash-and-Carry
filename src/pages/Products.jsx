@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addToCart, getCart } from '../utils/cartUtils';
 
 const Products = () => {
     const navigate = useNavigate();
+    const [, startTransition] = useTransition();
     const [selectedCategory, setSelectedCategory] = useState('All Products');
     const [cartCount, setCartCount] = useState(0);
 
@@ -60,7 +61,7 @@ const Products = () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <button onClick={() => navigate('/checkout')} className="flex items-center gap-3 bg-[#1e1e7a] hover:bg-[#c51c24] text-white px-6 py-3 rounded-2xl transition-all shadow-lg active:scale-95 group">
+                            <button onClick={() => startTransition(() => navigate('/checkout'))} className="flex items-center gap-3 bg-[#1e1e7a] hover:bg-[#c51c24] text-white px-6 py-3 rounded-2xl transition-all shadow-lg active:scale-95 group">
                                 <span className="material-symbols-outlined transition-transform group-hover:rotate-12">shopping_bag</span>
                                 <span className="font-bold text-sm">Cart ({cartCount})</span>
                             </button>
