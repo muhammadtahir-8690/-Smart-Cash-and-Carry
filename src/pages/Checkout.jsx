@@ -8,6 +8,10 @@ import PaymentForm from '../components/PaymentForm';
 // recreating the Stripe object on every render.
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, useMemo } from 'react';
+import { getCart, clearCart } from '../utils/cartUtils';
+
 const Checkout = () => {
     const navigate = useNavigate();
     const [paymentMethod, setPaymentMethod] = useState('cod');
@@ -16,7 +20,18 @@ const Checkout = () => {
     const [isProcessingSadaPay, setIsProcessingSadaPay] = useState(false);
     const [sadaPayPhone, setSadaPayPhone] = useState("");
 
-    const orderAmount = 1170; // Hardcoded for this demo, should be dynamic in real app
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        setCart(getCart());
+    }, []);
+
+    const deliveryFee = 150;
+    const subtotal = useMemo(() => {
+        return cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    }, [cart]);
+
+    const orderAmount = subtotal + deliveryFee;
 
     useEffect(() => {
         if (paymentMethod === 'online' && onlineSubMethod === 'card' && !clientSecret) {
@@ -61,7 +76,7 @@ const Checkout = () => {
     };
 
     const handlePaymentSuccess = () => {
-        // Redirect to a success page or show success message
+        clearCart();
         alert("Payment Successful! Thank you for your order.");
         navigate('/home');
     };
@@ -286,7 +301,7 @@ const Checkout = () => {
                                                         <div className="flex-1">
                                                             <div className="flex justify-between items-center mb-0.5">
                                                                 <p className="text-sm font-bold text-slate-800 dark:text-white">Pay with SadaPay Wallet</p>
-                                                                <span className="px-2 py-0.5 bg-red-600 text-white text-[8px] font-black uppercase tracking-wider rounded-md animate-pulse">V3 - LATEST FIX</span>
+                                                                <span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[8px] font-black uppercase tracking-wider rounded-md">Demo Mode</span>
                                                             </div>
                                                             <p className="text-[10px] text-slate-500 font-bold">Fast & seamless mobile payments</p>
                                                         </div>
@@ -335,28 +350,32 @@ const Checkout = () => {
                                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Order ID: #SC-9921</p>
                                 </div>
                                 <div className="p-8 space-y-6 max-h-[300px] overflow-y-auto custom-scrollbar">
-                                    <div className="flex gap-4">
-                                        <img className="w-16 h-16 rounded-2xl bg-slate-50 p-2 object-contain border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwZXb6cwO28GABSUp8GlHD7Luc84SPqGVuotlo4aCbjM-Ck8IqJJNnQSPPLL4kNqZ8xdTMv3l1O55PKH0BdpWuzpphkNxprKxQb2POFEgLZuEpO-7YXCwYcyVkVH9SydFbsNzMtllK4u4AhWV6F_3ERa_t6tDxhbSmqILQplpons9djFUYXiqBIa-S1_fWfdFdNnTlqOGlNEyasDbA5RIq_zxKq-bZ-1KLGZV6GGvlHcO35-QpegDuB_r5MoT-pyg0aujA-Nn4Wz5v" alt="Tomatoes" />
-                                        <div className="flex-1">
-                                            <p className="text-sm font-bold truncate">Fresh Tomatoes (Premium)</p>
-                                            <p className="text-xs text-slate-400 font-semibold">1kg × 2</p>
-                                            <p className="text-sm font-black mt-1">PKR 440</p>
+                                    {cart.length > 0 ? cart.map((item) => (
+                                        <div key={item.id} className="flex gap-4">
+                                            <img className="w-16 h-16 rounded-2xl bg-slate-50 p-2 object-contain border border-slate-100" src={item.img} alt={item.name} />
+                                            <div className="flex-1">
+                                                <p className="text-sm font-bold truncate">{item.name}</p>
+                                                <p className="text-xs text-slate-400 font-semibold">{item.quantity} × Rs. {item.price}</p>
+                                                <p className="text-sm font-black mt-1">PKR {item.price * item.quantity}</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    )) : (
+                                        <p className="text-center text-slate-400 font-bold">Your cart is empty</p>
+                                    )}
                                 </div>
                                 <div className="p-8 bg-slate-50/50 dark:bg-slate-800/30 space-y-3">
                                     <div className="flex justify-between text-sm font-semibold text-slate-500">
                                         <span>Subtotal</span>
-                                        <span className="text-slate-900 dark:text-white">PKR 1,020</span>
+                                        <span className="text-slate-900 dark:text-white">PKR {subtotal.toLocaleString()}</span>
                                     </div>
                                     <div className="flex justify-between text-sm font-semibold text-slate-500">
                                         <span>Delivery (Express)</span>
-                                        <span className="text-slate-900 dark:text-white">PKR 150</span>
+                                        <span className="text-slate-900 dark:text-white">PKR {deliveryFee}</span>
                                     </div>
                                     <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-end">
                                         <div>
                                             <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Total Payable</p>
-                                            <p className="text-3xl font-black tracking-tighter text-[#c52026]">PKR 1,170</p>
+                                            <p className="text-3xl font-black tracking-tighter text-[#c52026]">PKR {orderAmount.toLocaleString()}</p>
                                         </div>
                                     </div>
                                 </div>

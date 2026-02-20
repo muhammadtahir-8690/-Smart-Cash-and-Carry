@@ -1,9 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { addToCart, getCart } from '../utils/cartUtils';
 
 const Products = () => {
     const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = useState('All Products');
+    const [cartCount, setCartCount] = useState(0);
+
+    const updateCartCount = () => {
+        const cart = getCart();
+        const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+        setCartCount(count);
+    };
+
+    useEffect(() => {
+        updateCartCount();
+        window.addEventListener('cartUpdated', updateCartCount);
+        return () => window.removeEventListener('cartUpdated', updateCartCount);
+    }, []);
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+    };
 
     const categories = [
         { name: 'All Products', icon: 'grid_view' },
@@ -44,7 +62,7 @@ const Products = () => {
                         <div className="flex items-center gap-4">
                             <button onClick={() => navigate('/checkout')} className="flex items-center gap-3 bg-[#1e1e7a] hover:bg-[#c51c24] text-white px-6 py-3 rounded-2xl transition-all shadow-lg active:scale-95 group">
                                 <span className="material-symbols-outlined transition-transform group-hover:rotate-12">shopping_bag</span>
-                                <span className="font-bold text-sm">Cart (0)</span>
+                                <span className="font-bold text-sm">Cart ({cartCount})</span>
                             </button>
                         </div>
                     </div>
@@ -103,7 +121,7 @@ const Products = () => {
                                             <p className="text-2xl font-black text-[#1e1e7a] dark:text-white">Rs. {product.price}</p>
                                             <p className="text-xs text-slate-400 font-bold tracking-wide">Premium Grade</p>
                                         </div>
-                                        <button onClick={() => navigate('/checkout')} className="w-14 h-14 bg-[#1e1e7a] text-white rounded-[1.25rem] flex items-center justify-center shadow-lg hover:bg-[#c51c24] transition-all active:scale-90 group/btn">
+                                        <button onClick={() => handleAddToCart(product)} className="w-14 h-14 bg-[#1e1e7a] text-white rounded-[1.25rem] flex items-center justify-center shadow-lg hover:bg-[#c51c24] transition-all active:scale-90 group/btn">
                                             <span className="material-symbols-outlined text-[24px] transition-transform group-hover/btn:rotate-12">add_shopping_cart</span>
                                         </button>
                                     </div>

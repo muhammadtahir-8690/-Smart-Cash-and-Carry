@@ -1,7 +1,35 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { addToCart, getCart } from '../utils/cartUtils';
 
 const Home = () => {
     const navigate = useNavigate();
+    const [cartCount, setCartCount] = useState(0);
+
+    const updateCartCount = () => {
+        const cart = getCart();
+        const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+        setCartCount(count);
+    };
+
+    useEffect(() => {
+        updateCartCount();
+        window.addEventListener('cartUpdated', updateCartCount);
+        return () => window.removeEventListener('cartUpdated', updateCartCount);
+    }, []);
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        // Optional: show a small toast or animation
+    };
+
+    const trendingProducts = [
+        { id: 'h1', name: 'Fresh Farm Tomatoes', price: 180, category: 'Vegetables', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBxKU3fks0H_zcJsGegH-O_mC1Jwh1zIVqUhmmZ6WpmxzvvSY0JJp3xR66zZWNKaxVcKAwvSx2w1xBmS2nMi4CeiD5rbezbGgcR1cmzXnYEor4UBZycCzZLLey7uJrW0bH9EWyAX0s34iI74gz_4XX6mlhrPDPj-RI5mHhgAWt3MRBl_jrEcSWTYv6ePZV4eZtVX_iSGHL_EFLY29BWs_WAg2qXrcyTOcwMGlv1TsttbrB6Ewt7bOJIX8jnd_jK6IY1jjTC-8GvIHCr' },
+        { id: 'h2', name: 'Premium Bananas', price: 150, category: 'Fruits', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC4pftLmvgTQ4rfovYkMJz4_2JhgmhHquT9d-jFXqH96flhqnMvBYwkqogRJ1RQZHzGuzBSNPFI20wXxRc92r9102TaSZFLHlr4GbjDQkt4hhe0BTLatbsz_tZ9R0uUWd-I3iM_fD3imyumoAUsg4OtxEHvP-YDZSpaBw_ejdweUsXJpHj30CS7Ztm3utkJbAFdnc8I9vU_gWo02ld7dH7Tu9nDrt25nj6M-fd02HSqzcHuz0ZtcJP_QkRQP_t-Fh03-qToKQludu9S' },
+        { id: 'h3', name: 'Organic Red Apples', price: 320, category: 'Fruits', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMgsoOQtCNFaNjF-rdR-b3uM8VQyLL8zjg4FOYu4ra249JnPGz-FwL8ubn3fR0odkIXzHeuZ3-E3cWDZJ9nYBl6n1o0pafB_OSAkMRxwWD2U88H1GBnSUwLTMhcwKzs3Vtzn3T6WfUAOuJUrOEf7W0Rp1MtwUGDwp0g7wkBfTa-xHSKt_3kLD-fvRmEpER5JEa_jd2r1QYdmzPlJ8RUJb5SNcqNhzHa6k7od-RXpepqJyCdLk0MtCmxOPNfDRfLJrjIPcfQgoAU4Ye' },
+        { id: 'h4', name: 'Whole Wheat Flour', price: 640, category: 'Pantry', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC5n-gK_vKsZudsKk3Ir_dAa6zS8E98dQjJVGkWDl0mE5YqKduqBV0pei2eVIG-lhbGTkTLiVDkzXeHMmO2tbRBvNCBCl98wUwANbPRDeHKPeC_LiGEtEpFWORJHYma3v973VVEuIcyfEolikdoq0BRunPRlqg1WUhFLR3A7vb7aTKQ-EbqTVyUgAlH07RzXCypn26FJYijDdnBzrjusFegJL3iWByUjV2gtiV7Ns2WR5cULlWSeYROdbcp8Q3BPhVfNKjnjbxHuy-n' },
+        { id: 'h5', name: 'Organic Milk', price: 210, category: 'Dairy', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKym-Qnc-fBcP96IXX6KOQKqJEbUOqfoN18f0KZhsrbxbd-NB25BkAZ73JPzwmwjEn49vOgi9lVJZ97cR6D36fh1kBIzYx8Q5K2GhG2EbJJRGRq29I_wX1bHXdq8xC5USBMI1V0j_pI9kLAuiOVGh7gUrmYnOYCXOl92V8qeSy1EbV1DwyqRXTfDCJjd8yMuEF1ARp8C6BdKuQVlnNGcGcuY6EkB_Es82rv8O4iAe0eJ92GgCJUTgi7BMBBLPUh1obAMKikb9JNxb5' }
+    ];
 
     const categories = [
         { name: 'Fruits', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMgsoOQtCNFaNjF-rdR-b3uM8VQyLL8zjg4FOYu4ra249JnPGz-FwL8ubn3fR0odkIXzHeuZ3-E3cWDZJ9nYBl6n1o0pafB_OSAkMRxwWD2U88H1GBnSUwLTMhcwKzs3Vtzn3T6WfUAOuJUrOEf7W0Rp1MtwUGDwp0g7wkBfTa-xHSKt_3kLD-fvRmEpER5JEa_jd2r1QYdmzPlJ8RUJb5SNcqNhzHa6k7od-RXpepqJyCdLk0MtCmxOPNfDRfLJrjIPcfQgoAU4Ye' },
@@ -33,9 +61,9 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <button className="flex items-center gap-3 bg-[#1e1e7a] hover:bg-[#c51c24] text-white px-6 py-3 rounded-2xl transition-all shadow-lg active:scale-95 group">
+                            <button onClick={() => navigate('/checkout')} className="flex items-center gap-3 bg-[#1e1e7a] hover:bg-[#c51c24] text-white px-6 py-3 rounded-2xl transition-all shadow-lg active:scale-95 group">
                                 <span className="material-symbols-outlined transition-transform group-hover:rotate-12">shopping_bag</span>
-                                <span className="font-bold text-sm">Cart (0)</span>
+                                <span className="font-bold text-sm">Cart ({cartCount})</span>
                             </button>
                         </div>
                     </div>
@@ -102,17 +130,17 @@ const Home = () => {
                     <span className="px-4 py-1.5 bg-[#c51c24] text-white text-[11px] font-black rounded-full uppercase tracking-[0.2em] shadow-lg shadow-[#c51c24]/20">Hot Now</span>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 font-sans">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                        <div key={i} className="group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative text-left">
+                    {trendingProducts.map((product) => (
+                        <div key={product.id} className="group bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-100 dark:border-slate-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative text-left">
                             <div className="aspect-square bg-slate-50 dark:bg-slate-900 rounded-2xl mb-5 overflow-hidden">
-                                <img alt="Product" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxKU3fks0H_zcJsGegH-O_mC1Jwh1zIVqUhmmZ6WpmxzvvSY0JJp3xR66zZWNKaxVcKAwvSx2w1xBmS2nMi4CeiD5rbezbGgcR1cmzXnYEor4UBZycCzZLLey7uJrW0bH9EWyAX0s34iI74gz_4XX6mlhrPDPj-RI5mHhgAWt3MRBl_jrEcSWTYv6ePZV4eZtVX_iSGHL_EFLY29BWs_WAg2qXrcyTOcwMGlv1TsttbrB6Ewt7bOJIX8jnd_jK6IY1jjTC-8GvIHCr" />
+                                <img alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={product.img} />
                             </div>
                             <div className="space-y-2">
-                                <p className="text-[11px] uppercase font-black text-[#c51c24] tracking-widest">Vegetables</p>
-                                <h3 className="font-bold text-[#1e1e7a] dark:text-slate-100 text-lg leading-tight group-hover:text-[#c51c24] transition-colors">Fresh Farm Tomatoes</h3>
+                                <p className="text-[11px] uppercase font-black text-[#c51c24] tracking-widest">{product.category}</p>
+                                <h3 className="font-bold text-[#1e1e7a] dark:text-slate-100 text-lg leading-tight group-hover:text-[#c51c24] transition-colors">{product.name}</h3>
                                 <div className="flex items-center justify-between pt-4">
-                                    <span className="text-2xl font-black text-[#1e1e7a] dark:text-white">Rs. 180</span>
-                                    <button onClick={() => navigate('/checkout')} className="w-12 h-12 bg-[#1e1e7a] text-white rounded-2xl flex items-center justify-center hover:bg-[#c51c24] transition-all shadow-lg active:scale-90">
+                                    <span className="text-2xl font-black text-[#1e1e7a] dark:text-white">Rs. {product.price}</span>
+                                    <button onClick={() => handleAddToCart(product)} className="w-12 h-12 bg-[#1e1e7a] text-white rounded-2xl flex items-center justify-center hover:bg-[#c51c24] transition-all shadow-lg active:scale-90">
                                         <span className="material-symbols-outlined">add</span>
                                     </button>
                                 </div>
