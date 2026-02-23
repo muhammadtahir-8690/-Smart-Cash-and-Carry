@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Onboarding from './pages/Onboarding';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/order-success" element={<OrderSuccess />} />
             </Routes>
+            <Analytics />
         </Router>
     );
 }
